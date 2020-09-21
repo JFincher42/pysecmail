@@ -1,0 +1,14 @@
+[
+    {
+        "id": 639,
+        "from": "someone@example.com",
+        "subject": "Some subject",
+        "date": "2018-06-08 14:33:55"
+    },
+    {
+        "id": 640,
+        "from": "someoneelse@example.com",
+        "subject": "Other subject",
+        "date": "2018-06-08 14:40:55"
+    }
+]
