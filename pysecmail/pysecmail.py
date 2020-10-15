@@ -11,8 +11,23 @@ import json
 endpoint = "https://www.1secmail.com/api/v1/"
 domain = "1secmail.com"
 
+# Some data from the provider
+email_domains = [
+    "1secmail.com",
+    "1secmail.org",
+    "1secmail.net",
+    "wwjmp.com",
+    "esiix.com",
+]
+
 
 # Functions
+def generate_email_address(count: int) -> list:
+    """
+    """
+    pass
+
+
 def get_messages(email: str) -> list:
     """Gets all the messages for a given email address
 
