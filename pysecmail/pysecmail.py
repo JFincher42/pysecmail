@@ -29,7 +29,24 @@ email_domains = [
     "esiix.com",
 ]
 
+
 # Configuration info
+class ConfigData:
+    def __init__(self):
+        self.config_filename = pathlib.Path(".") / "pysecmail.json"
+
+        self.config_data = dict()
+        if self.config_filename.exists():
+            # Read that file
+            with open(self.config_filename, "r") as config_file:
+                self.config_data = json.load(config_file)
+
+    def get_email_addresses(self):
+        return self.config_data.keys()
+
+    def get_email_config_file(self, email_address):
+        return self.config_data[email_address]
+
 
 # QT Main Window
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -46,13 +63,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Setup some basics here
         self.cboDomain.addItems(email_domains)
+        get_config_data(configuration_filename)
+        self.lstEmailAddresses.addItems(config_data.keys)
 
         # Get the list of existing email addresses
-        self.email_addresses = self.get_email_addresses()
+        self.email_addresses = self.config_data.keys()
 
-    
-    def get_email_addresses(self):
-        
 
 # Functions
 def generate_email_address(count: int = 1) -> list:
