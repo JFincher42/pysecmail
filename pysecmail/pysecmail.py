@@ -33,7 +33,9 @@ email_domains = [
 # Configuration info
 class ConfigData:
     def __init__(self):
-        self.config_filename = pathlib.Path(".") / "pysecmail.json"
+        self.config_filename = (
+            pathlib.Path(".") / "pysecmail" / "pysecmail.json"
+        )
 
         self.config_data = dict()
         if self.config_filename.exists():
@@ -63,11 +65,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Setup some basics here
         self.cboDomain.addItems(email_domains)
-        get_config_data(configuration_filename)
-        self.lstEmailAddresses.addItems(config_data.keys)
+        self.email_data = ConfigData()
 
-        # Get the list of existing email addresses
-        self.email_addresses = self.config_data.keys()
+        self.modelEmailAddresses = QStringListModel(
+            self.email_data.get_email_addresses()
+        )
+        self.lstEmailAddresses.setModel(self.modelEmailAddresses)
 
 
 # Functions
